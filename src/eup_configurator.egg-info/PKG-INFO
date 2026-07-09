@@ -1,0 +1,66 @@
+Metadata-Version: 2.4
+Name: eup_configurator
+Version: 1.0.0
+Summary: Leichtgewichtige YAML-Konfigurationsverwaltung mit verschachteltem Dot-Notation-Zugriff
+Author: Dein Name
+License: MIT
+Project-URL: Homepage, https://github.com/EboUPrime/eup_configurator
+Keywords: config,configuration,yaml,settings
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: PyYAML>=6.0
+
+# configurator
+
+Leichtgewichtige YAML-Konfigurationsverwaltung mit verschachteltem
+Dot-Notation-Zugriff (`config.mailer.host.value`).
+
+## Installation
+
+Lokal aus dem Projektordner:
+
+```bash
+pip install .
+```
+
+Für Entwicklung (editable install):
+
+```bash
+pip install -e .
+```
+
+## Verwendung
+
+```python
+from configurator import Configurator
+
+# Standardmäßig wird 'application.yaml' im Paketverzeichnis erwartet.
+# Alternativ: eigenen Ordner angeben.
+config = Configurator(config_file="application.yaml", base_dir="/pfad/zu/deinem/projekt")
+
+# Verschachtelter Zugriff
+print(config.mailer.host.value)
+
+# Zugriff per Dot-Notation-Pfad
+print(config.get_value("mailer.password"))
+
+# Wert setzen und speichern
+config.set_nested("mailer.password", "neues-passwort")
+
+# Datenbankpfad ermitteln (Schlüssel unterhalb von 'database')
+db_path = config.get_database_path("path")
+
+# Konfiguration neu laden
+config.reload()
+
+# Alle bekannten Pfade auflisten
+print(config.list_elements())
+```
+
+## Lizenz
+
+MIT

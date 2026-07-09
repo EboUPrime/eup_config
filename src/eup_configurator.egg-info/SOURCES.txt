@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+src/eup_configurator/__init__.py
+src/eup_configurator/core.py
+src/eup_configurator/py.typed
+src/eup_configurator.egg-info/PKG-INFO
+src/eup_configurator.egg-info/SOURCES.txt
+src/eup_configurator.egg-info/dependency_links.txt
+src/eup_configurator.egg-info/requires.txt
+src/eup_configurator.egg-info/top_level.txt

@@ -1,21 +1,33 @@
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "EUP-Configuration"
+name = "eup_configurator"
 version = "1.0.0"
-description = "Eine einfache Konfigurationsprojekt für Python."
-readme = "readme.md"
-requires-python = ">=3.10"
+description = "Leichtgewichtige YAML-Konfigurationsverwaltung mit verschachteltem Dot-Notation-Zugriff"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
 authors = [
     { name = "Givara Ebo", email = "givara.ebo@ebouprime.com" }
 ]
+keywords = ["config", "configuration", "yaml", "settings"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "License :: OSI Approved :: MIT License",
+]
+dependencies = [
+    "PyYAML>=6.0",
+]
 
-dependencies = []
-
-[tool.setuptools]
-package-dir = {"" = "src"}
+[project.urls]
+Homepage = "hhttps://github.com/EboUPrime/eup_configurator"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+configurator = ["py.typed"]
