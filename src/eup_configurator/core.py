@@ -8,6 +8,7 @@ Attributzugriff (dot-notation) darauf ermöglichen.
 from __future__ import annotations
 
 import os
+from datetime import datetime
 from pathlib import Path
 from typing import Any, Optional
 
@@ -88,7 +89,7 @@ class Configurator:
 
         try:
             with open(self.config_path, "r", encoding="utf-8") as stream:
-                self.config = yaml.safe_load(stream) or {}
+                self.config = yaml.safe_load(stream)
         except FileNotFoundError:
             print(f"Config file not found: {self.config_path}. Creating default config.")
             self.config = {}
@@ -175,10 +176,16 @@ class Configurator:
 
     def save_config(self) -> None:
         """Speichert die aktuelle Konfiguration in die YAML-Datei."""
+        data_to_save = dict()
+        data_to_save["_meta"] = {
+            "project_directory": self.proj_dir,
+            "config_file": str(self.config_path),
+            "last_saved": datetime.now().isoformat(timespec="seconds"),
+        }
 
         try:
             with open(self.config_path, "w", encoding="utf-8") as file:
-                yaml.safe_dump(self.config, file, default_flow_style=False, allow_unicode=True)
+                yaml.safe_dump(data_to_save, file, default_flow_style=False, allow_unicode=True)
         except IOError as exc:
             print(f"Error saving config file: {exc}")
 
