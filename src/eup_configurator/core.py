@@ -57,7 +57,7 @@ class Configurator:
     sowie Hilfsmethoden zum Lesen, Schreiben und Neuladen der Werte.
     """
 
-    def __init__(self, config_file: str = "application.yaml", base_dir: Optional[str] = None) -> None:
+    def __init__(self, config_file: str = "application.yaml", config_dir: Optional[str] = None) -> None:
         """
         :param config_file: Name bzw. Pfad der YAML-Datei.
         :param base_dir: Verzeichnis, in dem ``config_file`` liegt.
@@ -65,7 +65,10 @@ class Configurator:
         """
         self.config_file = config_file
         self.config: dict = {}
+        self.config_dir = config_dir
         self.proj_dir = os.getenv("PROJECT_DIRECTORY", os.getcwd())
+        if self.config_dir:
+            self.config_path = os.path.join(self.proj_dir, self.config_dir)
         self.config_path = os.path.join(self.proj_dir, self.config_file)
         self.load_config()
         self._set_attributes_from_config()
