@@ -66,7 +66,7 @@ class Configurator:
         self.config_file = config_file
         self.dir = Path(base_dir).resolve() if base_dir else Path(__file__).parent.resolve()
         self.config: dict = {}
-        self.proj_dir = os.getenv("PROJECT_DIRECTORY", str(self.dir))
+        self.proj_dir = os.getenv("PROJECT_DIRECTORY", os.getcwd())
         self.load_config()
         self._set_attributes_from_config()
 
