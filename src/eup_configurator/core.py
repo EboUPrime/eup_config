@@ -180,10 +180,10 @@ class Configurator:
         """Speichert die aktuelle Konfiguration in die YAML-Datei."""
         data_to_save = dict()
         data_to_save["_meta"] = {
+            "project_name": os.path.basename(self.proj_dir),
             "project_directory": self.proj_dir,
             "config_file": str(self.config_path),
             "last_saved": datetime.now().isoformat(timespec="seconds"),
-            "project_name": os.path.basename(self.proj_dir),
         }
 
         try:
