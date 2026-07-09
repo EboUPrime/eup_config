@@ -188,7 +188,7 @@ class Configurator:
 
         try:
             with open(self.config_path, "w", encoding="utf-8") as file:
-                yaml.safe_dump(data_to_save, file, default_flow_style=False, allow_unicode=True)
+                yaml.safe_dump(data_to_save, file, default_flow_style=False, allow_unicode=True, sort_keys=False)
         except IOError as exc:
             print(f"Error saving config file: {exc}")
 
